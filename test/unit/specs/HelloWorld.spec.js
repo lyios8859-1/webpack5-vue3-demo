@@ -1,11 +1,12 @@
-import Vue from 'vue'
+import { mount } from '@vue/test-utils'
 import HelloWorld from '@/components/HelloWorld'
 
-describe('HelloWorld.vue', () => {
-  it('should render correct contents', () => {
-    const Constructor = Vue.extend(HelloWorld)
-    const vm = new Constructor().$mount()
-    expect(vm.$el.querySelector('.hello h1').textContent)
-      .toEqual('Welcome to Your Vue.js App')
-  })
-})
+describe("HelloWorld.vue", () => {
+  const wrapper = mount(HelloWorld);
+  it("测试累加", () => {
+    wrapper.setData({ count: 13 });
+    const button = wrapper.find("button");
+    button.trigger("click");
+    expect((wrapper.vm).count).toBe(14);
+  });
+});

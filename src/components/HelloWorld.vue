@@ -1,36 +1,22 @@
 <template>
-  <div class="hello">
-    <h1>{{ tom.name }}={{tom.age}}</h1>
+  <div>
+    <span class="count">{{ count }}</span>
+    <button @click="increment">Increment</button>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive } from 'vue';
-interface Parson {
-  name: string;
-  age: number;
-}
+<script>
+import { defineComponent, ref } from 'vue';
 export default defineComponent({
-  name: 'HelloWorld',
-  data() {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    };
-  },
   setup() {
-    const tom = reactive<Parson>({
-      name: 'tom',
-      age: 34
-    });
+    const count = ref(0);
+    const increment = () => {
+      count.value++;
+    };
     return {
-      tom
+      increment,
+      count
     };
   }
 });
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
-
-
